@@ -12,8 +12,10 @@ app.use(bodyParser.json());
 const apiRoutes = express.Router();
 
 apiRoutes.get('/api/posts', routes.getPosts);
-apiRoutes.post('/api/users', routes.createUsers);
 apiRoutes.get('/api/users', routes.getUsers);
+apiRoutes.get('/api/users/:userId', routes.getUsersById);
+
+apiRoutes.post('/api/users', routes.createUsers);
 apiRoutes.post('/api/login', routes.login);
 
 app.use(apiRoutes);
