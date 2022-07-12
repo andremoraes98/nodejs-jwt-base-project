@@ -3,14 +3,14 @@ const { User } = require('../models');
 module.exports = async (req, res) => {
   try {
     const { userId } = req.params;
-    const token = req.headers.authorization.split(' ')[1];
+    const { authorization } = req.headers;
     const users = await User.findOne({
       where: {
         id: userId,
       },
     });
 
-    if (!token) {
+    if (!authorization) {
       return res.status(400).json({ message: 'Token não encontrado ou informado' });
     } 
     if (!users) throw Error;
